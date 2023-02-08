@@ -6,7 +6,7 @@ public final class Constants {
 
     public static final class MotorBoxConstants {
         public static final double kDrivingWheelCircumference = Units.inchesToMeters(4) * Math.PI; // TODO: Measure
-        public static final double kGearRatio = 6.66; // TODO: Measure
+        public static final double kGearRatio = 12.75; // May be inaccurate. Sourced from https://www.andymark.com/products/toughbox-mini-classic
         public static final double kCountsPerRotation = 5;
 
         public static final double kDriveEncoderRot2Meter = kDrivingWheelCircumference / kGearRatio;
