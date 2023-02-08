@@ -16,9 +16,11 @@ public class TankDriveCmd extends CommandBase {
     private Supplier<Double> xSpeedFunction;
     private Supplier<Double> ySpeedFunction;
 
-    public TankDriveCmd(TankSubsystem tankSubsystem, Supplier<Double> speedFunction) {
+    public TankDriveCmd(TankSubsystem tankSubsystem, Supplier<Double> xSpeedFunction, Supplier<Double> ySpeedFunction) {
         this.tankSubsystem = tankSubsystem;
-        this.xSpeedFunction = speedFunction;
+
+        this.xSpeedFunction = xSpeedFunction;
+        this.ySpeedFunction = xSpeedFunction;
 
         this.xSpeedLimiter = new SlewRateLimiter(20);
         this.ySpeedLimiter = new SlewRateLimiter(20);
