@@ -4,6 +4,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants.MotorBoxConstants;
 
 public class MotorBox {
 
@@ -27,6 +28,11 @@ public class MotorBox {
 
         frontMotorEncoder = new Encoder(frontMotorEncoderPorts[0], frontMotorEncoderPorts[1]);
         backMotorEncoder = new Encoder(backMotorEncoderPorts[0], backMotorEncoderPorts[1]);
+
+        frontMotorEncoder
+                .setDistancePerPulse(MotorBoxConstants.kDriveEncoderCounts2Meter);
+        backMotorEncoder
+                .setDistancePerPulse(MotorBoxConstants.kDriveEncoderCounts2Meter);
 
         frontMotorEncoder.setReverseDirection(encodersInverted);
         backMotorEncoder.setReverseDirection(encodersInverted);

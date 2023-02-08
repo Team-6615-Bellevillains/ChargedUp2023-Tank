@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.TankSubsystem;
 
 public class TankDriveCmd extends CommandBase {
@@ -22,8 +23,8 @@ public class TankDriveCmd extends CommandBase {
         this.xSpeedFunction = xSpeedFunction;
         this.ySpeedFunction = xSpeedFunction;
 
-        this.xSpeedLimiter = new SlewRateLimiter(20);
-        this.ySpeedLimiter = new SlewRateLimiter(20);
+        this.xSpeedLimiter = new SlewRateLimiter(DriveConstants.kTeleOpMaxMotorAccelerationMetersPerSecondSquared);
+        this.ySpeedLimiter = new SlewRateLimiter(DriveConstants.kTeleOpMaxMotorAccelerationMetersPerSecondSquared);
 
         addRequirements(tankSubsystem);
     }
@@ -36,8 +37,8 @@ public class TankDriveCmd extends CommandBase {
         xSpeed = Math.abs(xSpeed) > 0.05 ? xSpeed : 0.0;
         ySpeed = Math.abs(ySpeed) > 0.05 ? ySpeed : 0.0;
 
-        xSpeed = xSpeedLimiter.calculate(xSpeed) * 100;
-        ySpeed = ySpeedLimiter.calculate(ySpeed) * 100;
+        xSpeed = xSpeedLimiter.calculate(xSpeed) * DriveConstants.kTeleOpMaxMotorSpeedMetersPerSecond;
+        ySpeed = ySpeedLimiter.calculate(ySpeed) * DriveConstants.kTeleOpMaxMotorSpeedMetersPerSecond;
 
         if (Math.abs(xSpeed) > Math.abs(ySpeed)) {
             tankSubsystem.setBoxSpeeds(new double[] { xSpeed, -xSpeed });
