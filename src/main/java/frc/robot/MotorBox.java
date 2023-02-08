@@ -3,15 +3,21 @@ package frc.robot;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MotorBox {
+
+    private int idx;
 
     private Spark frontMotor, backMotor;
     private Encoder frontMotorEncoder, backMotorEncoder;
     private PIDController speedController;
 
-    public MotorBox(int frontMotorPort, int backMotorPort, int[] frontMotorEncoderPorts, int[] backMotorEncoderPorts,
+    public MotorBox(int idx, int frontMotorPort, int backMotorPort, int[] frontMotorEncoderPorts,
+            int[] backMotorEncoderPorts,
             boolean motorsInverted, boolean encodersInverted) {
+
+        this.idx = idx;
 
         frontMotor = new Spark(frontMotorPort);
         backMotor = new Spark(backMotorPort);
@@ -29,9 +35,15 @@ public class MotorBox {
 
     }
 
+    private String appendIdx(String input) {
+        return String.format("[%s] %s", idx, input);
+    }
+
     public void set(double speed) {
         double pidOutput = speedController.calculate((frontMotorEncoder.getRate() + backMotorEncoder.getRate()) / 2,
                 speed);
+
+        SmartDashboard.putNumber(appendIdx("Speed Output"), pidOutput);
 
         frontMotor.set(pidOutput);
         backMotor.set(pidOutput);

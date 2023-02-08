@@ -5,8 +5,8 @@ import frc.robot.MotorBox;
 
 public class TankSubsystem extends SubsystemBase {
 
-    private MotorBox leftMotorBox = new MotorBox(0, 1, new int[] { 6, 7 }, new int[] { 4, 5 }, true, false);
-    private MotorBox rightMotorBox = new MotorBox(2, 3, new int[] { 2, 3 }, new int[] { 0, 1 }, false, false);
+    private MotorBox leftMotorBox = new MotorBox(0, 0, 1, new int[] { 6, 7 }, new int[] { 4, 5 }, true, false);
+    private MotorBox rightMotorBox = new MotorBox(1, 2, 3, new int[] { 2, 3 }, new int[] { 0, 1 }, false, false);
 
     public TankSubsystem() {
     }
